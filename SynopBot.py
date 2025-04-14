@@ -17,39 +17,39 @@ stop_words = set(stopwords.words('english'))
 lemmatizer = WordNetLemmatizer()
 support_nouns = ['db', 'database', 'admin', 'tech', 'support', 'users', 'user', 'rights', 'access', 'sign', 'signin', 'sso', 'error', 'errors', 'setup']
 services_nouns = ['report', 'reports', 'dashboard', 'budgets', 'drilldown', 'train', 'training', 'teach']
-training_doc = '/Users/rramage/Desktop/SynML/SynoptixML/synopbot/doc/helptraining.html'
-forum_csv = '/Users/rramage/Desktop/SynML/SynoptixML/synopbot/doc/forum_2.csv'
+training_doc = '../helptraining.html'
+forum_csv = '../forum_2.csv'
 e_learning_site = 'https://elearning.synoptixsoftware.com/all-courses'
 reg = re.compile(r'(<[/a-zA-Z]+>)')
 elearning = []
 
 
 def get_joke():
-	with open('/Users/rramage/Desktop/SynML/SynoptixML/synopbot/doc/jokes.txt', 'r') as file:
+	with open('../jokes.txt', 'r') as file:
 		lines = file.readlines()
 	return lines[random.randrange(len(lines))]
 
 
 def get_responses():
-	if path.exists('/Users/rramage/Desktop/SynML/SynoptixML/synopbot/doc/responses.csv'):
+	if path.exists('../responses.csv'):
 		responses = []
 		lower_responses = []
-		with open('/Users/rramage/Desktop/SynML/SynoptixML/synopbot/doc/responses.csv') as csv_file:
+		with open('../responses.csv') as csv_file:
 			reader = csv.reader(csv_file, delimiter=',')
 			for row in reader:
 				responses.append(row[1])
-		with open('/Users/rramage/Desktop/SynML/SynoptixML/synopbot/doc/lower_responses.csv') as csv_file:
+		with open('../lower_responses.csv') as csv_file:
 			reader = csv.reader(csv_file, delimiter=',')
 			for row in reader:
 				lower_responses.append(row[1])
 		return responses, lower_responses
 	else:
 		parsing = parse_html()
-		with open('/Users/rramage/Desktop/SynML/SynoptixML/synopbot/doc/responses.csv', 'w') as response_file:
+		with open('../responses.csv', 'w') as response_file:
 			response_writer = csv.writer(response_file, delimiter=',', quotechar='"')
 			for i in range(len(parsing[0])):
 				response_writer.writerow([i, parsing[0][i]])
-		with open('/Users/rramage/Desktop/SynML/SynoptixML/synopbot/doc/lower_responses.csv', 'w') as response_file:
+		with open('../lower_responses.csv', 'w') as response_file:
 			response_writer = csv.writer(response_file, delimiter=',', quotechar='"')
 			for i in range(len(parsing[1])):
 				response_writer.writerow([i, parsing[1][i]])
@@ -88,10 +88,10 @@ def parse_elearning():
 
 
 def get_course_responses():
-	if path.exists('/Users/rramage/Desktop/SynML/SynoptixML/synopbot/doc/e_learning_responses.csv'):
+	if path.exists('../e_learning_responses.csv'):
 		responses = []
 		lower_responses = []
-		with open('/Users/rramage/Desktop/SynML/SynoptixML/synopbot/doc/e_learning_responses.csv') as csv_file:
+		with open('../e_learning_responses.csv') as csv_file:
 			reader = csv.reader(csv_file, delimiter=',')
 			for row in reader:
 				row_data = row[1]
@@ -105,7 +105,7 @@ def get_course_responses():
 		for course in elearning:
 			responses.append(course)
 			lower_responses.append(course.lower())
-		with open('/Users/rramage/Desktop/SynML/SynoptixML/synopbot/doc/e_learning_responses.csv', 'w') as e_learning_file:
+		with open('../e_learning_responses.csv', 'w') as e_learning_file:
 			response_writer = csv.writer(e_learning_file, delimiter=',', quotechar='"')
 			for i in range(len(responses)):
 				response_writer.writerow([i, responses[i]])
