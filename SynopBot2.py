@@ -24,7 +24,7 @@ services_nouns = ['report', 'reports', 'dashboard', 'budgets', 'drilldown', 'tra
 
 blog_url = 'https://synoptixsoftware.com/blog/page/'
 e_learning_site = 'https://elearning.synoptixsoftware.com/all-courses'
-file_path = '/Users/rramage/Desktop/SynML/SynoptixML/synopbot/doc/'
+file_path = '../SynoptixML/synopbot/doc/'
 blogs = {}
 elearning = []
 
